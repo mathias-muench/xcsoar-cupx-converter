@@ -15,16 +15,20 @@ input_file_content = input_file.read()
 input_file_content = input_file_content.replace('\r\n', '\n')
 input_file_content = input_file_content.replace('\r', '\n')
 
-temp_file = open("POINTS-UNIX.cup", 'w')
+# create output directory
+if not os.path.exists("output"):
+    os.makedirs("output")
+
+temp_file = open("output/POINTS.cup", 'w')
 temp_file.write(input_file_content)
 temp_file.close()
 
-cup_unix_file = "POINTS-UNIX.cup"
+cup_unix_file = "output/POINTS.cup"
 
 # Create a corresponding waypoints_details file
 with open(cup_unix_file, 'r') as csv_in_file:
     csv_reader = csv.reader(csv_in_file)
-    output_file = open("waypoints_details.txt", 'w')
+    output_file = open("output/waypoints_details.txt", 'w')
     for row in csv_reader:
         if row[0] == "name":
             continue
@@ -43,5 +47,3 @@ with open(cup_unix_file, 'r') as csv_in_file:
         # Add newline for better readability
         output_file.write("\n")
     output_file.close()
-    # remove cupx file
-    os.remove(cup_unix_file)
