@@ -40,3 +40,5 @@ with open(cup_unix_file, 'r') as csv_in_file:
                 output_file.write("image=pics/" + row[13] + "\n")
             if '.pdf' in row[13]:
                 output_file.write("file=pics/" + row[13] + "\n")
+        # Add newline for better readability
+        output_file.write("\n")
