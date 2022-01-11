@@ -34,12 +34,12 @@ with open(cup_unix_file, 'r') as csv_in_file:
                 if '.jpg' in item:
                     output_file.write("image=pics/" + item + "\n")
                 if '*.pdf' in item:
-                    output_file.write("file=pics/" + item + "\n")
+                    output_file.write("file=docs/" + item + "\n")
         else:
             if '.jpg' in row[13]:
                 output_file.write("image=pics/" + row[13] + "\n")
             if '.pdf' in row[13]:
-                output_file.write("file=pics/" + row[13] + "\n")
+                output_file.write("file=docs/" + row[13] + "\n")
         # Add newline for better readability
         output_file.write("\n")
     output_file.close()
