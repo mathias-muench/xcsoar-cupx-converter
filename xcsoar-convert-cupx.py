@@ -24,7 +24,7 @@ cup_unix_file = "POINTS-UNIX.cup"
 # Create a corresponding waypoints_details file
 with open(cup_unix_file, 'r') as csv_in_file:
     csv_reader = csv.reader(csv_in_file)
-    output_file = open("waypoints_details.txt", 'a')
+    output_file = open("waypoints_details.txt", 'w')
     for row in csv_reader:
         if row[0] == "name":
             continue
@@ -42,3 +42,6 @@ with open(cup_unix_file, 'r') as csv_in_file:
                 output_file.write("file=pics/" + row[13] + "\n")
         # Add newline for better readability
         output_file.write("\n")
+    output_file.close()
+    # remove cupx file
+    os.remove(cup_unix_file)
