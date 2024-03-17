@@ -1,10 +1,26 @@
 #!/usr/bin/python3
 
 import csv
+import sys
 import os
+import io
+from zipfile import ZipFile
 
 # Takes a POINTS.CUP file in cupx format and converts it to a waypoints_details
 # file.
+
+cupx_file = open(sys.argv[1], "rb")
+cupx_file_content = cupx_file.read()
+
+lfh1 = cupx_file_content.find(b"PK\x03\x04")
+eod1 = cupx_file_content.find(b"PK\x05\x06")
+lfh2 = cupx_file_content.find(b"PK\x03\x04", eod1)
+
+zip1 = io.BytesIO(cupx_file_content[lfh1:lfh2])
+ZipFile(zip1).extractall()
+
+zip2 = io.BytesIO(cupx_file_content[lfh2:])
+ZipFile(zip2).extractall()
 
 input_file = open("POINTS.CUP", "r", encoding="UTF-8")
 
