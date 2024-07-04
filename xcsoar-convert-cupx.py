@@ -22,7 +22,7 @@ zip2 = io.BytesIO(cupx_file_content[lfh2:])
 ZipFile(zip2).extractall()
 
 # Create a corresponding waypoints_details file
-with open("POINTS.CUP", "r", encoding="UTF-8") as csv_in_file:
+with open("POINTS.CUP", "r", encoding="UTF-8", newline="") as csv_in_file:
     csv_reader = csv.reader(csv_in_file)
     output_file = open("waypoints_details.txt", "w", encoding="UTF-8")
     for row in csv_reader:
